@@ -1,0 +1,43 @@
+name: khetexpert
+description: A new Flutter project.
+publish_to: 'none'
+version: 1.0.0+1
+environment:
+  sdk: '>=3.1.0 <4.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  firebase_core:
+  get:
+  lottie:
+  cloud_firestore:
+  google_fonts:
+  restart_app:
+  http:
+  fluttertoast:
+  firebase_messaging:
+  flutter_tts: ^3.5.1
+  translator:
+  url_launcher:
+  shared_preferences:
+  font_awesome_flutter: ^10.6.0
+  image_picker:
+  firebase_storage:
+  google_mlkit_image_labeling:
+  google_mlkit_text_recognition:
+  firebase_auth:
+  cupertino_icons: ^1.0.2
+  double_back_to_close: ^2.0.0
+  csc_picker:
+  zego_uikit_prebuilt_call: 
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+flutter:
+  uses-material-design: true
+  assets:
+    - lib/assets/tree.webp
+    - lib/assets/843349.png
+    - lib/assets/4301882.png
+    - lib/assets/developer.jpg
