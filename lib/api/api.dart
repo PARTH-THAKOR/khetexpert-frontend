@@ -665,11 +665,11 @@ abuseWordFilter(String prompt) async {
         return true;
       }
     } else {
-      Fluttertoast.showToast(msg: "Internal Server Error");
-      return false;
+      // Fluttertoast.showToast(msg: "Internal Server Error");
+      return true;
     }
   } catch (e) {
-    Fluttertoast.showToast(msg: "Server Error");
-    return false;
+    // Fluttertoast.showToast(msg: "Server Error");
+    return true;
   }
 }
