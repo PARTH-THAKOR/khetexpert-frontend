@@ -646,30 +646,31 @@ expertProfileUpdate(String imgUrl, String newMobileNumber, String newName, Exper
 
 // AbuseWordFilter
 abuseWordFilter(String prompt) async {
-  try {
-    var headers = {
-      'X-RapidAPI-Key': rapidApiKey,
-      'X-RapidAPI-Host': rapidApiHost,
-      'content-type': 'application/x-www-form-urlencoded',
-    };
-    var request = http.Request('POST', Uri.parse(rapidApiHostHttp));
-    request.bodyFields = {'content': await changeValueOtherToEn(prompt)};
-    request.headers.addAll(headers);
-    http.StreamedResponse response = await request.send();
-    if (response.statusCode == 200) {
-      var result = await response.stream.bytesToString();
-      if (result.contains("true")) {
-        Fluttertoast.showToast(msg: "Prompt is bad");
-        return false;
-      } else {
-        return true;
-      }
-    } else {
-      // Fluttertoast.showToast(msg: "Internal Server Error");
-      return true;
-    }
-  } catch (e) {
-    // Fluttertoast.showToast(msg: "Server Error");
-    return true;
-  }
+  // try {
+  //   var headers = {
+  //     'X-RapidAPI-Key': rapidApiKey,
+  //     'X-RapidAPI-Host': rapidApiHost,
+  //     'content-type': 'application/x-www-form-urlencoded',
+  //   };
+  //   var request = http.Request('POST', Uri.parse(rapidApiHostHttp));
+  //   request.bodyFields = {'content': await changeValueOtherToEn(prompt)};
+  //   request.headers.addAll(headers);
+  //   http.StreamedResponse response = await request.send();
+  //   if (response.statusCode == 200) {
+  //     var result = await response.stream.bytesToString();
+  //     if (result.contains("true")) {
+  //       Fluttertoast.showToast(msg: "Prompt is bad");
+  //       return false;
+  //     } else {
+  //       return true;
+  //     }
+  //   } else {
+  //     // Fluttertoast.showToast(msg: "Internal Server Error");
+  //     return true;
+  //   }
+  // } catch (e) {
+  //   // Fluttertoast.showToast(msg: "Server Error");
+  //   return true;
+  // }
+  return true;
 }
