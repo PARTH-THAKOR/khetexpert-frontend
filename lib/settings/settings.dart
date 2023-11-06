@@ -14,6 +14,3 @@ String globalLanguage = "English";
 
 // ExpertProfile
 ExpertProfile expert = ExpertProfile();
-
-// PopTiming
-DateTime backTime = DateTime.now();

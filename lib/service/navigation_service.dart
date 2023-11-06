@@ -2,14 +2,12 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:khetexpert/layouts/auth/for_expert/expert_login.dart';
 import 'package:khetexpert/service/firebase_login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../layouts/auth/for_farmer/farmer_login.dart';
 import '../layouts/navigation_/application_mode.dart';
-import '../settings/settings.dart';
 import '../themes/themes.dart';
 
 saveLanguageNavigation(String langCode) async {
@@ -89,18 +87,5 @@ profileImageWidget(String url) {
       url,
       fit: BoxFit.cover,
     );
-  }
-}
-
-popExitMethod() async {
-  final difference = DateTime.now().difference(backTime);
-  final isExitWarning = difference >= const Duration(seconds: 2);
-  backTime = DateTime.now();
-  if (isExitWarning) {
-    Fluttertoast.showToast(msg: 'Press back again to exit.', fontSize: 18);
-    return false;
-  } else {
-    Fluttertoast.cancel();
-    return true;
   }
 }
