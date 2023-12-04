@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:khetexpert/layouts/auth/for_expert/expert_login.dart';
 import 'package:khetexpert/layouts/navigation_/application_mode.dart';
-import 'package:khetexpert/service/initialization.dart';
+import 'package:khetexpert/start/initialization.dart';
 import 'package:khetexpert/settings/settings.dart';
 import 'package:khetexpert/states/GetX/ask_to_expert/ask_to_expert_farmer_getx.dart';
 import 'package:khetexpert/states/GetX/ask_to_expert/doubt_solution_getx.dart';
@@ -40,7 +40,7 @@ expertProfile(String expertId) async {
     if (responce.statusCode == 200) {
       SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
       sharedPreferences.setString("expert", responce.body.toString());
-      ApplicationConfigureAdapter.initializeExpertProfile();
+      await ApplicationConfigureAdapter.initializeExpertProfile();
     } else {
       Fluttertoast.showToast(msg: "Internal Server Error");
     }
@@ -561,7 +561,7 @@ farmerProfileCreate(String name, String phoneNumber, String state_) async {
     if (responce.statusCode == 201) {
       SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
       sharedPreferences.setString("farmer", responce.body.toString());
-      ApplicationConfigureAdapter.initializeFarmerProfile();
+      await ApplicationConfigureAdapter.initializeFarmerProfile();
     } else {
       Fluttertoast.showToast(msg: "Internal Server Error");
     }

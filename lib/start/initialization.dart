@@ -3,7 +3,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -23,43 +22,57 @@ import '../settings/settings.dart';
 class ApplicationConfigureAdapter extends StatelessWidget {
   const ApplicationConfigureAdapter({super.key});
 
-  static void initializeApp() async {
+  static initializeApp() async {
+    await ApplicationConfigureAdapter.initializeFirebaseService();
+    await ApplicationConfigureAdapter.initializeDeviceOrientation();
+    await ApplicationConfigureAdapter.initializeApplicationRunner();
+    await ApplicationConfigureAdapter.initializeBackendServerHost();
+    await ApplicationConfigureAdapter.initializeApplicationTheme();
+    await ApplicationConfigureAdapter.initializeApplicationSettings();
+  }
+
+  static initializeFirebaseService() async {
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
+  }
+
+  static initializeDeviceOrientation() async {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  }
+
+  static initializeApplicationRunner() async {
     runApp(const ApplicationConfigureAdapter());
   }
 
-  static void initializeExpertProfile() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    expert = ExpertProfile.fromJson(jsonDecode(sharedPreferences.getString("expert")!));
-    Get.off(const ExpertDiseaseDetection());
+  static initializeBackendServerHost() async {
+    host = webHost;
   }
 
-  static void initializeFarmerProfile() async {
+  static initializeApplicationTheme() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    farmer = FarmerProfile.fromJson(jsonDecode(sharedPreferences.getString("farmer")!));
-    Get.off(const DiseaseSolutionForFarmers());
-  }
-
-  static void hostConfigureAdapter() async {
-    if (kIsWeb) {
-      host = webHost;
-    } else {
-      host = mobileHost;
-    }
-  }
-
-  static void initializeApplicationSettings() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    hostConfigureAdapter();
     if (sharedPreferences.containsKey("themeMode")) {
       darkMode = sharedPreferences.getBool("themeMode")!;
     } else {
       darkMode = false;
     }
+  }
+
+  static initializeExpertProfile() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    expert = ExpertProfile.fromJson(jsonDecode(sharedPreferences.getString("expert")!));
+    Get.off(const ExpertDiseaseDetection());
+  }
+
+  static initializeFarmerProfile() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    farmer = FarmerProfile.fromJson(jsonDecode(sharedPreferences.getString("farmer")!));
+    Get.off(const DiseaseSolutionForFarmers());
+  }
+
+  static initializeApplicationSettings() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     if (sharedPreferences.containsKey("language")) {
       appLangCode = sharedPreferences.getString("language")!;
       if (appLangCode == "en") {

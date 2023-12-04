@@ -8,8 +8,6 @@
  *
 */
 
-import 'package:khetexpert/service/initialization.dart';
+import 'package:khetexpert/start/initialization.dart';
 
-main() {
-  ApplicationConfigureAdapter.initializeApp();
-}
+main() async => await ApplicationConfigureAdapter.initializeApp();

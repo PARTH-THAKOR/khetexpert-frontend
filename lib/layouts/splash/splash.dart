@@ -3,22 +3,10 @@
 import 'package:double_back_to_close/double_back_to_close.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:khetexpert/service/initialization.dart';
 import 'package:khetexpert/themes/themes.dart';
 
-class Splash extends StatefulWidget {
+class Splash extends StatelessWidget {
   const Splash({super.key});
-
-  @override
-  State<Splash> createState() => _SplashState();
-}
-
-class _SplashState extends State<Splash> {
-  @override
-  void initState() {
-    ApplicationConfigureAdapter.initializeApplicationSettings();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
